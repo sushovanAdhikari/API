@@ -1,0 +1,6 @@
+__pycache__/
+lib/
+token files/
+client_secret_3_10_PM.json
+db_credentials.json
+youtube.py

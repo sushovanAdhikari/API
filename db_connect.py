@@ -5,7 +5,7 @@ import os
 def db_connect():
 
     # get db connection from json
-    cred_json_file = 'client_secret_3_10_PM.json'
+    cred_json_file = 'db_credentials.json'
     path = os.getcwd()
     cred_file_path = os.path.join(path, cred_json_file)
     with open(cred_file_path, 'r') as file:
@@ -38,5 +38,3 @@ def stored_procedure_call(connection, routine_type, routine_name, *args):
         query = f"{sql_command} {routine_name}({placeholders})"
         cur.execute(query, args)
         connection.commit()
-
-    connection.close()

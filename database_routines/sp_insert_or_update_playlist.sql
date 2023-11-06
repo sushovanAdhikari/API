@@ -48,8 +48,13 @@ BEGIN
             RAISE exception 'Error from inner stored procedure: %', inner_error_message;
         END IF;
    	end loop;
-   
---    call sp_update_status_removed_content();
-END;
+--	call sp_update_status_removed_content(inner_error_message);
+--	
+--	IF inner_error_message IS NOT NULL THEN
+--            -- Handle the error, log it, or take appropriate action
+--            RAISE NOTICE 'Error from inner stored procedure: %', inner_error_message;
+--            RAISE exception 'Error from inner stored procedure: %', inner_error_message;
+--    END IF;
+end;
 $procedure$
 ;

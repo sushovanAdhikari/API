@@ -151,8 +151,12 @@ if __name__ == '__main__':
     def update_status():
         r_type = 'STORED-PROCEDURE'
         r_name = 'sp_update_status_removed_content'
+        args_dict = {
+            'out_message': ''
+        }
+        args = list(args_dict.values())
         try:
-            stored_procedure_call(conn, r_type, r_name)
+            stored_procedure_call(conn, r_type, r_name, *args)
         except psycopg2.Error as e:
             print("SQLSTATE:", e.pgcode)
             print("Error message:", e.pgerror)  
@@ -163,6 +167,6 @@ if __name__ == '__main__':
         # if a playlsit has no video, then there is nothign to exprot
         if playlistItems :
             save_playlist(playlistId,playlistItems)
-            exportPlaylistToExcel(playlistItems, 'Playist backup ({0}).xlsx'.format(playlistTitle))
-    
-    # update_status()
+            # exportPlaylistToExcel(playlistItems, 'Playist backup ({0}).xlsx'.format(playlistTitle))
+    update_status()
+    conn.close()
